@@ -443,7 +443,7 @@ export default function DashboardPage() {
           <>
             <StatCard label="Active RFQs" value={activeRfqs} icon={FileText} trend={rfqTrend} tint="orange" />
             <StatCard label="Pending Approvals" value={pendingApprovals} icon={Clock} trend={approvalsTrend} tint="amber" />
-            <StatCard label="Spend This Month" value={monthSpend} icon={IndianRupee} trend={spendTrend} tint="green" />
+            <StatCard label="Spend This Month" value={monthSpend} icon={IndianRupee} trend={spendTrend} tint="green" isCurrency={true} />
             <StatCard label="Active Vendors" value={activeVendors} icon={Users} trend={vendorsTrend} tint="blue" />
             
             {/* Procurement Health Score Card */}

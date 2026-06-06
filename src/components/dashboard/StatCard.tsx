@@ -10,14 +10,18 @@ export function StatCard({
   icon: Icon,
   trend,
   tint = 'orange',
+  isCurrency = false,
 }: {
   label: string;
   value: string | number;
   icon: LucideIcon;
   trend?: { value: string; up: boolean };
   tint?: 'orange' | 'green' | 'blue' | 'amber';
+  isCurrency?: boolean;
 }) {
-  const displayValue = typeof value === 'number' ? formatINR(value) : value;
+  const displayValue = typeof value === 'number' 
+    ? (isCurrency ? formatINR(value) : value.toLocaleString('en-IN')) 
+    : value;
 
   const tints = {
     orange: 'bg-orange-100 text-primary',
