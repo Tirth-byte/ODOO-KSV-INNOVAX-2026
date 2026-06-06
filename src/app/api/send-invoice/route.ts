@@ -3,6 +3,7 @@ import { Resend } from 'resend';
 import { formatINRFull as formatCurrency } from '@/lib/formatCurrency';
 import type { LineItem } from '@/lib/types';
 
+export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 interface SendInvoiceBody {

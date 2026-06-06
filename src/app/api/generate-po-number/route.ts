@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { nextSequence, formatPoNumber } from '@/lib/numbering';
 
+export const dynamic = 'force-dynamic';
 export const runtime = 'nodejs';
 
 /**
