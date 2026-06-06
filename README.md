@@ -12,7 +12,7 @@
   ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
   ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-  [🚀 Live Demo](https://vendorbridge.vercel.app) · [🐛 Report Bug](https://github.com/issues) · [✨ Request Feature](https://github.com/issues)
+  [🚀 Live Demo](https://vendorbridge.vercel.app) · [📖 Documentation](#documentation) · [🐛 Report Bug](https://github.com/issues) · [✨ Request Feature](https://github.com/issues)
 </div>
 
 ---
@@ -34,111 +34,103 @@ VendorBridge provides a **centralized, role-based ERP** that handles the complet
 ---
 
 ## 🔄 Procurement Workflow
-┌──────────────────────────────────────────────────────────────────────┐
-│                    VENDORBRIDGE PROCUREMENT FLOW                      │
-└──────────────────────────────────────────────────────────────────────┘
-👤 PROCUREMENT OFFICER        👥 VENDORS           ✅ MANAGER/APPROVER
-│                           │                        │
-▼                           │                        │
-┌─────────────┐                    │                        │
-│  1. Create  │                    │                        │
-│     RFQ     │                    │                        │
-│  + Products │                    │                        │
-│  + Vendors  │                    │                        │
-└──────┬──────┘                    │                        │
-│ 📧 Invite Vendors         │                        │
-├──────────────────────────►│                        │
-│                    ┌──────┴──────┐                 │
-│                    │  2. Submit  │                 │
-│                    │  Quotation  │                 │
-│                    │  + Pricing  │                 │
-│                    └──────┬──────┘                 │
-│◄───────────────────────────┘                        │
-│                                                     │
-▼                                                     │
-┌─────────────┐                                              │
-│  3. Compare │                                              │
-│  Quotations │                                              │
-│  + Score    │                                              │
-└──────┬──────┘                                              │
-│ 🔔 Request Approval                                 │
-├────────────────────────────────────────────────────►│
-│                                              ┌──────┴──────┐
-│                                              │ 4. Approve  │
-│                                              │    / Reject │
-│                                              └──────┬──────┘
-│◄───────────────────────────────────────────────────┘
-│ ✅ Auto-generate Purchase Order
-▼
-┌─────────────┐
-│  5. Purchase│──── PO-2026-XXXX
-│     Order   │──── PDF Export
-└──────┬──────┘
-▼
-┌─────────────┐
-│  6. Invoice │──── INV-2026-XXXX
-│  Generated  │──── PDF + Print
-│             │──── Email Delivery
-└──────┬──────┘
-▼
-┌─────────────┐
-│  7. Reports │──── Audit Trail
-│  & Analytics│──── Spend Analytics
-│             │──── Vendor Performance
-└─────────────┘
+
+```mermaid
+flowchart TD
+    A[👤 Procurement Officer\nCreates RFQ] --> B[📧 Vendors Invited]
+    B --> C[👥 Vendors Submit\nQuotations]
+    C --> D[⚖️ Compare Quotations\nSide-by-Side]
+    D --> E[🔔 Request Approval]
+    E --> F{✅ Manager Decision}
+    F -->|Approved| G[📦 Auto-Generate\nPurchase Order]
+    F -->|Rejected| H[❌ Notify & Close]
+    G --> I[🧾 Generate Invoice]
+    I --> J[📤 PDF + Email\nDelivery]
+    J --> K[📊 Reports &\nAnalytics Updated]
+
+    style A fill:#F97316,color:#fff
+    style G fill:#10B981,color:#fff
+    style F fill:#6366F1,color:#fff
+    style H fill:#EF4444,color:#fff
+    style K fill:#F97316,color:#fff
+```
 
 ---
 
-## ✨ Features
+## ✨ Key Features
 
-| Module | Features |
-|--------|----------|
-| 🔐 **Auth** | Email/Password + Google OAuth, Role-based access, Session handling |
-| 📊 **Dashboard** | Live KPIs, Procurement health score, Spend charts, Activity feed |
-| 🏭 **Vendors** | Full profiles, GST + bank details, Performance scoring, Categories |
-| 📋 **RFQs** | Multi-step wizard, Dynamic products, Vendor assignment, Deadlines |
-| 💬 **Quotations** | Line-item pricing, Auto-calculations, Draft/Submit workflow |
-| ⚖️ **Comparison** | Side-by-side view, Smart scoring (price+delivery+rating), Highlights |
-| ✅ **Approvals** | Role-based workflow, Remarks, Timeline stepper, Auto PO on approve |
-| 📦 **Purchase Orders** | Auto PO numbers, PDF export, Status tracking, Delivery management |
-| 🧾 **Invoices** | Professional layout, PDF/Print, Email delivery, Payment tracking |
-| 📈 **Reports** | 4 chart types, Date ranges, CSV export, Vendor performance metrics |
-| 📝 **Activity Logs** | Full audit trail, Filterable timeline, Real-time updates |
+| Module | Description |
+|--------|-------------|
+| 🔐 **Authentication** | Email/Password + Google OAuth, role-based redirects, session handling |
+| 📊 **Dashboard** | Live KPIs, procurement health score, spend charts, activity feed |
+| 🏭 **Vendor Management** | Full profiles with GST, bank details, performance scoring |
+| 📋 **RFQ Management** | 3-step wizard, dynamic products, vendor assignment, deadline tracking |
+| 💬 **Quotations** | Line-item pricing, auto-calculations, draft/submit workflow |
+| ⚖️ **Comparison Engine** | Side-by-side view, smart scoring (price + delivery + rating) |
+| ✅ **Approval Workflow** | Role-based approvals, remarks, auto PO on approval |
+| 📦 **Purchase Orders** | Auto PO numbers (PO-2026-XXXX), PDF export, status tracking |
+| 🧾 **Invoices** | Professional layout, PDF/Print, email delivery, payment tracking |
+| 📈 **Reports** | 4 Recharts, date ranges, CSV export, vendor performance metrics |
+| 📝 **Activity Logs** | Full audit trail, filterable timeline, real-time updates |
 
 ---
 
 ## 🎭 Role-Based Access Control
-┌──────────────────┬─────────┬──────────┬──────────────────────┬────────┐
-│     Feature      │  Admin  │ Manager  │  Procurement Officer │ Vendor │
-├──────────────────┼─────────┼──────────┼──────────────────────┼────────┤
-│ Dashboard        │   ✅    │    ✅    │          ✅          │   ❌   │
-│ Vendor Mgmt      │   ✅    │    👁️   │          ✅          │   ❌   │
-│ RFQ Management   │   ✅    │    👁️   │          ✅          │   👁️  │
-│ Quotations       │   ✅    │    👁️   │          ✅          │   ✅   │
-│ Approvals        │   ✅    │    ✅    │          👁️         │   ❌   │
-│ Purchase Orders  │   ✅    │    👁️   │          ✅          │   👁️  │
-│ Invoices         │   ✅    │    👁️   │          ✅          │   👁️  │
-│ Reports          │   ✅    │    ✅    │          👁️         │   ❌   │
-└──────────────────┴─────────┴──────────┴──────────────────────┴────────┘
-✅ Full   👁️ View Only   ❌ No Access
+
+| Feature | Admin | Manager | Procurement Officer | Vendor |
+|---------|-------|---------|---------------------|--------|
+| Dashboard | ✅ Full | ✅ Full | ✅ Full | ❌ |
+| Vendor Management | ✅ Full | 👁️ View | ✅ Full | ❌ |
+| RFQ Management | ✅ Full | 👁️ View | ✅ Full | 👁️ View |
+| Quotations | ✅ Full | 👁️ View | ✅ Full | ✅ Full |
+| Approvals | ✅ Full | ✅ Full | 👁️ View | ❌ |
+| Purchase Orders | ✅ Full | 👁️ View | ✅ Full | 👁️ View |
+| Invoices | ✅ Full | 👁️ View | ✅ Full | 👁️ View |
+| Reports & Analytics | ✅ Full | ✅ Full | 👁️ View | ❌ |
+
+> ✅ Full Access &nbsp;&nbsp; 👁️ View Only &nbsp;&nbsp; ❌ No Access
 
 ---
 
 ## 🛠️ Tech Stack
-┌─────────────────────────────────────────────────────────────────┐
-│                        ARCHITECTURE                              │
-├──────────────────┬──────────────────────┬───────────────────────┤
-│    FRONTEND      │       BACKEND        │       SERVICES        │
-├──────────────────┼──────────────────────┼───────────────────────┤
-│ Next.js 14       │ Next.js API Routes   │ Firebase Auth         │
-│ TypeScript       │ /api/send-invoice    │ Firestore Database    │
-│ Tailwind CSS     │ /api/generate-po-no  │ Resend Email          │
-│ shadcn/ui        │ /api/generate-inv-no │ jsPDF Generation      │
-│ Recharts         │ middleware.ts        │ Vercel Deployment     │
-│ Zustand          │ RBAC Guards          │                       │
-│ React Hook Form  │ Firestore Rules      │                       │
-│ Zod Validation   │                      │                       │
-└──────────────────┴──────────────────────┴───────────────────────┘
+
+<table>
+<tr>
+<td valign="top" width="33%">
+
+**🖥️ Frontend**
+- Next.js 14 (App Router)
+- TypeScript (Strict)
+- Tailwind CSS
+- shadcn/ui Components
+- Recharts
+- Zustand
+- React Hook Form + Zod
+
+</td>
+<td valign="top" width="33%">
+
+**⚙️ Backend**
+- Next.js API Routes
+- `/api/send-invoice`
+- `/api/generate-po-number`
+- `/api/generate-invoice-number`
+- Middleware (RBAC Guards)
+- Firestore Security Rules
+
+</td>
+<td valign="top" width="33%">
+
+**☁️ Services**
+- Firebase Auth
+- Firestore Database
+- Resend (Email)
+- jsPDF (Documents)
+- Vercel (Deployment)
+
+</td>
+</tr>
+</table>
 
 ### Tech Badges
 
@@ -157,42 +149,45 @@ VendorBridge provides a **centralized, role-based ERP** that handles the complet
 ---
 
 ## 📁 Project Structure
+
+```text
 vendorbridge/
 ├── app/
 │   ├── (auth)/
-│   │   ├── login/              # Premium split-screen login
-│   │   ├── register/           # Multi-field registration
-│   │   └── complete-profile/   # Google OAuth profile completion
+│   │   ├── login/                 # Premium split-screen login
+│   │   ├── register/              # Multi-field registration
+│   │   └── complete-profile/      # Google OAuth completion
 │   ├── (dashboard)/
-│   │   ├── layout.tsx          # Sidebar + header shell
-│   │   ├── dashboard/          # KPIs, charts, activity feed
-│   │   ├── vendors/            # Vendor CRUD + performance
-│   │   ├── rfqs/               # RFQ wizard + management
-│   │   ├── quotations/         # Quote submission + comparison
-│   │   ├── approvals/          # Approval workflow
-│   │   ├── purchase-orders/    # PO management + PDF
-│   │   ├── invoices/           # Invoice + email + PDF
-│   │   ├── activity/           # Audit trail
-│   │   └── reports/            # Analytics dashboard
+│   │   ├── layout.tsx             # Sidebar + header shell
+│   │   ├── dashboard/             # KPIs, charts, activity
+│   │   ├── vendors/               # Vendor CRUD + performance
+│   │   ├── rfqs/                  # RFQ wizard + management
+│   │   ├── quotations/            # Quote submission + comparison
+│   │   ├── approvals/             # Approval workflow
+│   │   ├── purchase-orders/       # PO management + PDF
+│   │   ├── invoices/              # Invoice + email + PDF
+│   │   ├── activity/              # Audit trail
+│   │   └── reports/               # Analytics dashboard
 │   └── api/
-│       ├── send-invoice/       # Resend email integration
-│       ├── generate-po-number/ # Atomic PO counter
-│       └── generate-invoice-number/ # Atomic invoice counter
+│       ├── send-invoice/          # Resend email integration
+│       ├── generate-po-number/    # Atomic PO counter
+│       └── generate-invoice-number/
 ├── components/
-│   ├── ui/                     # shadcn/ui + Logo components
-│   ├── auth/                   # Auth components + Google button
-│   └── shared/                 # Shared components
+│   ├── ui/                        # shadcn/ui + Logo
+│   ├── auth/                      # Auth + Google button
+│   └── shared/                    # Shared components
 ├── lib/
-│   ├── firebase.ts             # Firebase config
-│   ├── permissions.ts          # RBAC logic
-│   ├── formatCurrency.ts       # Indian currency (Lakh/Crore)
-│   ├── seedData.ts             # 12-month demo data seeder
-│   └── logActivity.ts          # Activity logging utility
+│   ├── firebase.ts                # Firebase config
+│   ├── permissions.ts             # RBAC logic
+│   ├── formatCurrency.ts          # Lakh/Crore formatting
+│   ├── seedData.ts                # 12-month demo seeder
+│   └── logActivity.ts             # Activity logger
 ├── store/
-│   └── authStore.ts            # Zustand global state
-├── firestore.rules             # Role-scoped security rules
-├── .env.local.example          # Environment template (safe to commit)
+│   └── authStore.ts               # Zustand global state
+├── firestore.rules                # Security rules
+├── .env.local.example             # Env template
 └── README.md
+```
 
 ---
 
@@ -263,14 +258,17 @@ vercel --prod
 
 ## 🌱 Demo Data
 
-VendorBridge includes a realistic 12-month procurement dataset:
-- **15 vendors** across 10+ categories with full bank & GST details
-- **12 RFQs** spanning Jan 2025 – Jun 2026
-- **30+ quotations** with competitive pricing
-- **10 purchase orders** totaling ₹1.6+ Cr
-- **50+ activity logs** across all modules
+VendorBridge ships with a realistic **12-month procurement dataset**:
 
-Load it from the Dashboard banner when you first sign in.
+| Data Type | Count | Details |
+|-----------|-------|---------|
+| 🏭 Vendors | 15 | Across 10+ categories with GST + bank details |
+| 📋 RFQs | 12 | Jan 2025 – Jun 2026 |
+| 💬 Quotations | 30+ | With competitive pricing |
+| 📦 Purchase Orders | 10 | Total value ₹1.6+ Cr |
+| 📝 Activity Logs | 50+ | Across all modules |
+
+> Load demo data from the Dashboard banner on first sign-in.
 
 ---
 
