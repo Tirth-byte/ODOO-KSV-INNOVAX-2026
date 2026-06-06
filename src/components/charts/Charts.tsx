@@ -216,7 +216,7 @@ export function TopVendorsChart({ data }: { data: { label: string; value: number
         <Tooltip 
           contentStyle={tooltipStyle} 
           cursor={{ fill: '#FFF1E6', opacity: 0.4 }} 
-          formatter={(value: number) => [formatINRFull(value), 'Total Spend']}
+          formatter={(value: any) => [formatINRFull(value), 'Total Spend']}
         />
         <Bar 
           dataKey="value" 
@@ -247,7 +247,7 @@ export function HorizontalBarChart({ data }: { data: { label: string; value: num
         <Tooltip 
           contentStyle={tooltipStyle} 
           cursor={{ fill: '#FFF1E6' }} 
-          formatter={(value: number) => [formatINRFull(value), 'Spend']}
+          formatter={(value: any) => [formatINRFull(value), 'Spend']}
         />
         <Bar 
           dataKey="value" 
@@ -277,7 +277,7 @@ export function TrendLineChart({ data }: { data: { label: string; value: number 
         />
         <Tooltip 
           contentStyle={tooltipStyle} 
-          formatter={(value: number) => [formatINRFull(value), 'Count']}
+          formatter={(value: any) => [formatINRFull(Number(value) || 0), 'Count']}
         />
         <Line 
           type="monotone" 
