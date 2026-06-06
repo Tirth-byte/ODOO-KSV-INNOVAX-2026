@@ -222,30 +222,29 @@ export default function ActivityPage() {
             </Select>
           </div>
 
-          <div className="flex gap-2">
-            <div className="flex-1">
-              <label className="block text-xs font-semibold text-text-secondary uppercase mb-1.5">From Date</label>
+          <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">From Date</label>
               <div className="relative">
-                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary pointer-events-none" />
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                 <input
                   type="date"
                   value={fromDate}
                   onChange={(e) => setFromDate(e.target.value)}
-                  className="h-10 w-full pl-9 pr-3 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-400 transition-all cursor-pointer"
-                  style={{ colorScheme: 'light' }}
+                  className="h-10 pl-9 pr-3 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-400 appearance-none"
                 />
               </div>
             </div>
-            <div className="flex-1">
-              <label className="block text-xs font-semibold text-text-secondary uppercase mb-1.5">To Date</label>
+
+            <div className="flex flex-col gap-1">
+              <label className="text-xs font-semibold text-gray-500 uppercase tracking-wider">To Date</label>
               <div className="relative">
-                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-text-secondary pointer-events-none" />
+                <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" />
                 <input
                   type="date"
                   value={toDateStr}
                   onChange={(e) => setToDateStr(e.target.value)}
-                  className="h-10 w-full pl-9 pr-3 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-400 transition-all cursor-pointer"
-                  style={{ colorScheme: 'light' }}
+                  className="h-10 pl-9 pr-3 rounded-xl border border-gray-200 bg-white text-sm text-gray-700 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-400 appearance-none"
                 />
               </div>
             </div>
