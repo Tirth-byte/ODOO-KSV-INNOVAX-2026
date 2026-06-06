@@ -12,7 +12,7 @@
   ![Tailwind](https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white)
   ![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-  [🚀 Live Demo](https://vendorbridge.vercel.app) · [📖 Documentation](#documentation) · [🐛 Report Bug](https://github.com/issues) · [✨ Request Feature](https://github.com/issues)
+  [🚀 Live Demo](https://vendorbridge-psi.vercel.app) · [📖 Documentation](#documentation) · [🐛 Report Bug](https://github.com/issues) · [✨ Request Feature](https://github.com/issues)
 </div>
 
 ---
