@@ -1,0 +1,13 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Monogram VB -->
+  <path d="M120 130L160 230L200 130" stroke="#FF7A00" stroke-width="18" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M215 130V230H260C295 230 295 205 295 205C295 190 280 180 260 180C280 180 295 170 295 155C295 130 260 130 260 130H215Z" fill="#1F2937"/>
+  
+  <!-- Bridge Swoosh -->
+  <path d="M100 195C140 145 260 145 300 195" stroke="#FF7A00" stroke-width="10" stroke-linecap="round" fill="none"/>
+  
+  <!-- Company Name -->
+  <text x="200" y="320" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-weight="800" font-size="52" letter-spacing="-0.02em">
+    <tspan fill="#1F2937">Vendor</tspan><tspan fill="#FF7A00">Bridge</tspan>
+  </text>
+</svg>

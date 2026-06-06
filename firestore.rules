@@ -1,0 +1,104 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function userRole() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role;
+    }
+
+    function isAdmin() {
+      return isSignedIn() && userRole() == 'admin';
+    }
+
+    function isManager() {
+      return isSignedIn() && userRole() == 'manager';
+    }
+
+    function isProcurement() {
+      return isSignedIn() && userRole() == 'procurement_officer';
+    }
+
+    function isVendor() {
+      return isSignedIn() && userRole() == 'vendor';
+    }
+
+    function isStaff() {
+      return isAdmin() || isManager() || isProcurement();
+    }
+
+    // Users: a user can read/update their own profile; admins manage all.
+    match /users/{userId} {
+      allow read: if isSignedIn();
+      allow create: if isSignedIn() && request.auth.uid == userId;
+      allow update: if request.auth.uid == userId || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Vendors: staff manage; vendors can read their own linked record.
+    match /vendors/{vendorId} {
+      allow read: if isSignedIn();
+      allow create, update: if isStaff();
+      allow delete: if isAdmin();
+    }
+
+    // RFQs: procurement/admin create & edit; everyone signed-in can read.
+    match /rfqs/{rfqId} {
+      allow read: if isSignedIn();
+      allow create, update: if isProcurement() || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    match /rfqVendors/{id} {
+      allow read: if isSignedIn();
+      allow create, update, delete: if isProcurement() || isAdmin();
+    }
+
+    // Quotations: vendors create/update their own; staff read & set status.
+    match /quotations/{quotationId} {
+      allow read: if isSignedIn();
+      allow create: if isVendor() || isStaff();
+      allow update: if isStaff() ||
+        (isVendor() && resource.data.vendorId == request.auth.uid);
+      allow delete: if isAdmin();
+    }
+
+    // Approvals: managers/admins approve or reject.
+    match /approvals/{approvalId} {
+      allow read: if isSignedIn();
+      allow create: if isStaff();
+      allow update: if isManager() || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Purchase Orders: procurement/admin create; staff read.
+    match /purchaseOrders/{poId} {
+      allow read: if isSignedIn();
+      allow create, update: if isProcurement() || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Invoices: procurement/admin manage.
+    match /invoices/{invoiceId} {
+      allow read: if isSignedIn();
+      allow create, update: if isProcurement() || isAdmin();
+      allow delete: if isAdmin();
+    }
+
+    // Counters for atomic PO/invoice numbering.
+    match /counters/{counterId} {
+      allow read: if isSignedIn();
+      allow write: if isStaff();
+    }
+
+    // Activity logs: any signed-in user can append; only admins can read all.
+    match /activityLogs/{logId} {
+      allow create: if isSignedIn();
+      allow read: if isStaff();
+      allow update, delete: if false;
+    }
+  }
+}

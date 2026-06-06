@@ -1,0 +1,164 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-inter: 'Inter', system-ui, sans-serif;
+}
+
+body {
+  background-color: #fff8f5;
+  color: #1a1a1a;
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer components {
+  .input-base {
+    @apply w-full rounded-xl border border-brand-border bg-white px-3.5 py-2.5 text-sm text-text-primary
+      placeholder:text-text-secondary/60 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20
+      disabled:cursor-not-allowed disabled:opacity-60 transition;
+  }
+  .card {
+    @apply rounded-2xl border border-brand-border bg-white shadow-sm;
+  }
+  .label-base {
+    @apply mb-1.5 block text-sm font-medium text-text-primary;
+  }
+}
+
+/* Themeable avatar — colour driven by CSS vars set from user preference. */
+:root {
+  --avatar-from: #fb923c;
+  --avatar-to: #ea580c;
+}
+.vb-avatar {
+  background-image: linear-gradient(to bottom right, var(--avatar-from), var(--avatar-to));
+}
+
+
+/* Print styles for invoices */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: white !important;
+  }
+  .print-area {
+    box-shadow: none !important;
+    border: none !important;
+  }
+}
+
+/* Skeleton shimmer */
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: #f3ece6;
+}
+.skeleton::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.6), transparent);
+  animation: shimmer 1.5s infinite;
+}
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: #e7dcd2;
+  border-radius: 9999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #d8c9bb;
+}
+
+/* Global transitions */
+* {
+  transition-property: color, background-color, border-color, box-shadow, transform, opacity;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Page transitions */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.page-enter {
+  animation: fadeIn 0.3s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(16px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-20px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes growUp {
+  from { transform: scaleY(0); transform-origin: bottom; }
+  to { transform: scaleY(1); transform-origin: bottom; }
+}
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideInRight {
+  from { opacity: 0; transform: translateX(30px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-10px) rotate(2deg); }
+}
+.animate-fade-in-up {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease-out forwards;
+}
+.animate-float { animation: float 4s ease-in-out infinite; }
+.animate-slide-in-left {
+  opacity: 0;
+  animation: slideInLeft 0.6s ease-out forwards;
+}
+.animate-slide-in-right {
+  opacity: 0;
+  animation: slideInRight 0.6s ease-out forwards;
+}
+
+/* Cards hover shadows */
+.card {
+  transition: box-shadow 200ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+.card:hover {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+}
+
+/* Sidebar nav link transitions */
+aside nav a, lg\:flex nav a {
+  transition: all 150ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Table rows transitions */
+tr {
+  transition: background-color 100ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Drawer slide-in */
+@keyframes slideIn {
+  from { transform: translateX(100%); }
+  to { transform: translateX(0); }
+}
+.animate-slideIn {
+  animation: slideIn 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
